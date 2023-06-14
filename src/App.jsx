@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import CardNode from "./CardNode";
+import { Container, Stack } from "react-bootstrap";
+import SearchVar from "./SearchVar";
+
+
+
 
 function App() {
   // La variable data es la que va a almacenar los datos de "stays.json" y setData nos ayudará a guardar esos datos en esa variable. Es necesario que inicialicemos esa variable como un array vacío para evitar errores.
@@ -25,13 +31,23 @@ function App() {
 
   // Puedes ver la variable data en consola.
   console.log(data);
+
+    
+
   return (
-    <>
-    {/* Aquí te dejo un ejemplo de cómo podrías imprimir varios elementos a la vez. */}
-      {data.map((el, i) => {
-        return <h1 key={i}>{el.city}</h1>;
+    <Container>
+    <SearchVar/>
+    
+    <h2>Stay </h2>
+    <Stack direction="horizontal" gap={2}>
+      {data.map((el) => {
+        return (
+        <>
+            <CardNode superHost={(el.superHost==true)?"SUPER HOST":null} url={el.photo} description={el.type} tittle={el.title} beds={el.beds} bedsTrue={(el.beds!=null)?"beds":""} />
+        </>)
       })}
-    </>
+    </Stack>
+    </Container>
   );
 }
 
