@@ -5,24 +5,26 @@ import "./CardNode.css"
 
 
 
-function CardNode(props) {
-
-    
-    
-  
+function CardNode({props}) {
+    let estrella= <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" className="bi bi-star-fill" viewBox="0 0 16 16">
+    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+  </svg>
     return (
         <div>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.url} />
-                <Card.Body>
+            
+            <Card border="light" style={{width:"19rem", height:"25rem"}}>
+                <Card.Img variant="top" className='h-75 object-fit-cover' src={props.photo} />
+                <Card.Body className='h-25' >
                     <Card.Text>
-                    <span className='superHost'>{props.superHost}</span> 
-                    <div className='callout'>{props.description} {props.beds} {props.bedsTrue}</div> 
+                    <span className={(props.superHost==true?'superHost':null)}>{(props.superHost==true?"SUPER HOST":null)}</span> 
+                    <span>{props.type} </span> 
+                    <span>{props.beds} {(props.beds>0)?"beds":null} </span> 
+                    <span>{estrella}{props.rating}</span> 
                     </Card.Text>
-                    <Card.Title>{props.tittle}</Card.Title>
+                    <Card.Title>{props.title}</Card.Title>
                 </Card.Body>
             </Card> 
-    </div>
+        </div>
     )
 }
 

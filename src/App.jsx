@@ -3,6 +3,7 @@ import "./App.css";
 import CardNode from "./CardNode";
 import { Container, Stack } from "react-bootstrap";
 import SearchVar from "./SearchVar";
+import VarFunct from "./VarFunct";
 
 
 
@@ -35,18 +36,18 @@ function App() {
     
 
   return (
-    <Container>
-    <SearchVar/>
+    <Container className="mt-4">
+      <VarFunct/>
+      <SearchVar />
     
-    <h2>Stay </h2>
-    <Stack direction="horizontal" gap={2}>
-      {data.map((el) => {
-        return (
-        <>
-            <CardNode superHost={(el.superHost==true)?"SUPER HOST":null} url={el.photo} description={el.type} tittle={el.title} beds={el.beds} bedsTrue={(el.beds!=null)?"beds":""} />
-        </>)
-      })}
-    </Stack>
+      <h2>Stay </h2>
+      <Stack className="d-flex flex-wrap -flex justify-content-center" direction="horizontal" gap={5}>
+        {data.map((el,index) => {
+          return (
+          <CardNode props={el} key={index}/>
+          )
+        })}
+      </Stack>
     </Container>
   );
 }
