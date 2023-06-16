@@ -8,9 +8,22 @@
     transform: scale(0);
     top: 0;
     z-index: 10;
+    align-items: center;
     
 }
 
-.pagBoxShow{
+.show{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     transform: scale(1);
+    left:0;
+    top: 0;
+    z-index: 10;
+    align-items:center;
+    
+    
 }

@@ -31,17 +31,29 @@ function App() {
   }, []);
 
   // Puedes ver la variable data en consola.
-  console.log(data);
+  /* console.log(data); */
 
-    
+  const [numStays, setStays] = useState()
+  useEffect(() => {
+    setStays(data.length)
+ }, [data]);
+  
 
+ /* const filterList = data.map((el,i) =>{
+    return el.city
+ }) */
+  const filterList = data
+  
   return (
     <Container className="mt-4">
-      <VarFunct/>
-      <SearchVar />
-    
-      <h2>Stay </h2>
-      <Stack className="d-flex flex-wrap -flex justify-content-center" direction="horizontal" gap={5}>
+      <SearchVar country={data.country} array1={filterList} />
+      
+      <div className="d-flex justify-content-between align-items-center mt-5 pt-3">
+        <h2>Stays in Findland</h2>
+        <div className="fs-5"> {numStays}+stays</div>
+      </div>
+      
+      <Stack className="d-flex flex-wrap justify-content-center" direction="horizontal" gap={5}>
         {data.map((el,index) => {
           return (
           <CardNode props={el} key={index}/>
