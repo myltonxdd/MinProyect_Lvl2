@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   // Puedes ver la variable data en consola.
-  /* console.log(data); */
+  console.log(data);
 
   const [numStays, setStays] = useState()
   useEffect(() => {
