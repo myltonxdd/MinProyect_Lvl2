@@ -3,7 +3,7 @@ import "./App.css";
 import CardNode from "./CardNode";
 import { Container} from "react-bootstrap";
 import SearchVar from "./SearchVar";
-import VarFunct from "./VarFunct";
+
 
 
 

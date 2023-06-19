@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import "./CardNode.css"
 import {Stack } from "react-bootstrap";
-import VarFunct from './VarFunct';
+
 
 
 
