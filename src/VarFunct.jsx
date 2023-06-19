@@ -36,15 +36,15 @@ function VarFunct(props) {
     setLista(FILTERED);
     }
     
-
+    console.log(lista)
 
 
     //////IZQUIERDA O DERECHA////////////
 
-    const [izqu, setIzq] = useState(true)
-    const [derch, setDerch] = useState(false)
-
-
+    const [univ, setUniv] = useState(true)
+    
+    const cambia1 = () =>setUniv(true)
+    const cambia2 = () =>setUniv(false)
 
 
 
@@ -87,11 +87,11 @@ function VarFunct(props) {
             <div className="w-100 d-flex shadow-sm rounded-5">
                 <div className="forma form-control ">
                     <p className='mb-2' style={{fontSize:"12px"}}>LOCATION</p>
-                    <input defaultValue={ciudad} type="text" style={{outline:"none"}} placeholder="Add location" onKeyUp={myFunction} />
+                    <input className='w-100' defaultValue={ciudad} type="text" style={{outline:"none"}} onClick={cambia1} placeholder="Add location" onKeyUp={myFunction} />
                 </div>
                 <div className="forma form-control">
                     <p className='mb-2' style={{fontSize:"12px"}}>GUESTS</p>
-                    <input Value={adults + children} type="text" style={{outline:"none"}}  placeholder="Add Guest" />
+                    <input className='w-100' Value={adults + children} type="text" style={{outline:"none"}} onClick={cambia2} placeholder="Add Guest" />
                 </div>
                 <Button onClick={props.filerClose} type="button" className='btn btn-danger rounded-4 w-25' style={{border:"none", margin:"red"}}>{lupa} Search</Button>
 
@@ -99,25 +99,27 @@ function VarFunct(props) {
             
         </div>
         
-        <div className='d-flex w-100 bg-white px-5 flex-raw justify-content-center'>
-              
-            <form className='list-group border-none bg-white w-50 my-4 px-4' >
-                    <li className='list-group-item d-flex border-0'>
-                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Helsinki"}>{mapa} Helsinki, Finland</button>
-                    </li>
-                    <li className='list-group-item border-0'>
-                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Turku"}>{mapa} Turku, Finland</button>
-                    </li>
-                    <li className='list-group-item border-0'>
-                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Vaasa"}>{mapa} Vaasa, Finland</button>
-                    </li>
-                    <li className='list-group-item border-0'>
-                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Oulu"}>{mapa} Oulu, Finland</button>
-                    </li>
+        {/* <div className='d-flex w-100 bg-white px-5 flex-raw justify-content-center'> */}
+        <div className={univ?'d-flex w-100 bg-white px-5 flex-raw justify-content-start':'d-flex w-100 bg-white px-5 flex-raw justify-content-end'} >
+
+            {/* <form className='list-group border-none bg-white w-50 my-4 px-4' > */}              
+            <form className={univ?'list-group border-none bg-white w-50 my-4 px-4':'list-group border-none bg-white w-50 my-4 px-4 d-none'} >
+                <li className='list-group-item d-flex border-0'>
+                <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Helsinki"}>{mapa} Helsinki, Finland</button>
+                </li>
+                <li className='list-group-item border-0'>
+                <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Turku"}>{mapa} Turku, Finland</button>
+                </li>
+                <li className='list-group-item border-0'>
+                <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Vaasa"}>{mapa} Vaasa, Finland</button>
+                </li>
+                <li className='list-group-item border-0'>
+                <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Oulu"}>{mapa} Oulu, Finland</button>
+                </li>
                     
             </form>
 
-            <div className={derch?'my-4 d-flex w-50 flex-column':'my-4 d-flex w-50 flex-column '} >
+            <div className={univ?'my-4 d-flex w-50 flex-column d-none':'my-4 d-flex w-50 flex-column '} >
                 <div className='p-2'>
                     <h4 className='fs-6 m-0' >Adults</h4>
                     <div className="fs-6 text-body-tertiary">Ages 13 or above</div>
