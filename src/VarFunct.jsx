@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import "./varFunct.css"
 
+
+
 function VarFunct(props) {
 
+    //////ICONSSSSS//////////////
+    
+    let mapa = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+              </svg>)
+    
     let lupa = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" className="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
@@ -11,6 +19,7 @@ function VarFunct(props) {
     /////trae el array///////////
 
     const filterList = props.array
+    
 
     ////filtraaaaaa///////////////////
     
@@ -27,15 +36,31 @@ function VarFunct(props) {
     setLista(FILTERED);
     }
     
+
+
+
+    //////IZQUIERDA O DERECHA////////////
+
+    const [izqu, setIzq] = useState(true)
+    const [derch, setDerch] = useState(false)
+
+
+
+
+
     ///////funcion para igual botones//////////
-    function iguala (){
-        
+    const [ciudad, setCiudad] = useState("")
+    
+    function iguala (e){
+        e.preventDefault()
+        setCiudad(e.target.value)
+
     }
     
     ////////LADO DERECHO/////////////////////
 
-    const [adults, setAdult] = useState(() => parseInt(localStorage.getItem('adults')) || 0);
-    const [children, setChild] = useState(() => parseInt(localStorage.getItem('children')) || 0);
+    const [adults, setAdult] = useState(0);
+    const [children, setChild] = useState(0);
 
     const actualiza = (setValue, value) => {
         setValue(value);
@@ -51,58 +76,65 @@ function VarFunct(props) {
         }
     };
 
+    
+
     //////////////RETURN//////////////////////
     
   return (
-    <section className={props.clasTot} /* onClick={props.filerClose} */>
+    <section className={props.clasTot} >
         
-        <div className='w-100 pt-5 bg-white '>
-            <div className="input-group  w-75">
-                <input type="text" className="form-control" placeholder="Add location" onKeyUp={myFunction} />
-                <input type="text" className="form-control" placeholder="Add Guest" />
-                <Button type="button" className='btn btn-danger rounded-4 w-25' style={{border:"none", margin:"red"}}>{lupa} Search</Button>
+        <div className='w-100 p-5 bg-white d-flex justify-content-center'>
+            <div className="w-100 d-flex shadow-sm rounded-5">
+                <div className="forma form-control ">
+                    <p className='mb-2' style={{fontSize:"12px"}}>LOCATION</p>
+                    <input defaultValue={ciudad} type="text" style={{outline:"none"}} placeholder="Add location" onKeyUp={myFunction} />
+                </div>
+                <div className="forma form-control">
+                    <p className='mb-2' style={{fontSize:"12px"}}>GUESTS</p>
+                    <input Value={adults + children} type="text" style={{outline:"none"}}  placeholder="Add Guest" />
+                </div>
+                <Button onClick={props.filerClose} type="button" className='btn btn-danger rounded-4 w-25' style={{border:"none", margin:"red"}}>{lupa} Search</Button>
 
             </div>
             
         </div>
         
-        <div className='d-flex w-100 bg-white pt-5 flex-raw align-items-center'>
+        <div className='d-flex w-100 bg-white px-5 flex-raw justify-content-center'>
               
-            <ul className='list-group w-50 border border-0 ' >
-                    {lista.map((el,i)=>(<li className='list-group-item' key={i}><a>{el.city}</a> </li>) )}
-                    <li className='list-group-item'>
-                    <a onClick={iguala} value={"Helsinki"}>Helsinki, Finland</a>
+            <form className='list-group border-none bg-white w-50 my-4 px-4' >
+                    <li className='list-group-item d-flex border-0'>
+                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Helsinki"}>{mapa} Helsinki, Finland</button>
                     </li>
-                    <li className='list-group-item'>
-                    <a onClick={iguala} value={"Turku"}>Turku, Finland</a>
+                    <li className='list-group-item border-0'>
+                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Turku"}>{mapa} Turku, Finland</button>
                     </li>
-                    <li className='list-group-item'>
-                    <a onClick={iguala} value={"Vaasa"}>Vaasa, Finland</a>
+                    <li className='list-group-item border-0'>
+                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Vaasa"}>{mapa} Vaasa, Finland</button>
                     </li>
-                    <li className='list-group-item'>
-                    <a onClick={iguala} value={"Oulu"}>Oulu, Finland</a>
+                    <li className='list-group-item border-0'>
+                    <button className='red d-flex align-items-center bg-transparent' onClick={iguala} value={"Oulu"}>{mapa} Oulu, Finland</button>
                     </li>
                     
-            </ul>
+            </form>
 
-            <div className='m-4 px-4 d-flex w-50 flex-column'>
-                <div className='pt-2'>
+            <div className={derch?'my-4 d-flex w-50 flex-column':'my-4 d-flex w-50 flex-column '} >
+                <div className='p-2'>
                     <h4 className='fs-6 m-0' >Adults</h4>
                     <div className="fs-6 text-body-tertiary">Ages 13 or above</div>
                     <form className='d-flex flex-raw pt-2 align-items-center'>
-                        <button className='bg-white border rounded m-2' onClick={(e) => {decrement(setAdult, adults) }}>-</button>
+                        <button className='bg-white border rounded m-2' onClick={(e) => {e.preventDefault();decrement(setAdult, adults) }}>-</button>
                         <div className="num">{adults}</div>
-                        <button className='bg-white border rounded m-2' onClick={(e) => {increment(setAdult, adults) }}>+</button>
+                        <button className='bg-white border rounded m-2' onClick={(e) => {e.preventDefault();increment(setAdult, adults) }}>+</button>
                     </form>
                 </div>
 
-                <div className='pt-2'>
+                <div className='p-2'>
                     <h4 className='fs-6 m-0'>Children</h4>
                     <div className="fs-6 text-body-tertiary">Ages 2-12</div>
                     <form className='d-flex flex-raw pt-2 align-items-center'>
-                        <button className='bg-white border rounded m-2' onClick={(e) => {decrement(setChild, children) }}>-</button>
+                        <button className='bg-white border rounded m-2' onClick={(e) => {e.preventDefault();decrement(setChild, children) }}>-</button>
                         <div className="num">{children}</div>
-                        <button className='bg-white border rounded m-2' onClick={(e) => {increment(setChild, children) }}>+</button>
+                        <button className='bg-white border rounded m-2' onClick={(e) => {e.preventDefault();increment(setChild, children) }}>+</button>
                     </form>
                 </div>
             </div>
@@ -111,9 +143,6 @@ function VarFunct(props) {
         
     </section>
 
-
-
-   
   )
 }
 

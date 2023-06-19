@@ -25,5 +25,23 @@
     z-index: 10;
     align-items:center;
     
-    
+}
+
+.red:hover{
+    color: red;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.red{
+    font-family: 'Mulish', sans-serif;
+    color: #4F4F4F;
+}
+
+.forma:focus-within{
+    outline: 1px black solid;
+}
+
+.forma >input::placeholder{
+    color: #BDBDBD;
 }

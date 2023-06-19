@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import CardNode from "./CardNode";
-import { Container, Stack } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import SearchVar from "./SearchVar";
 import VarFunct from "./VarFunct";
 
@@ -39,27 +39,19 @@ function App() {
  }, [data]);
   
 
- /* const filterList = data.map((el,i) =>{
-    return el.city
- }) */
-  const filterList = data
+ //ENVIA DATOSSS////
+
+ const filterList = data
+
+
   
   return (
     <Container className="mt-4">
       <SearchVar country={data.country} array1={filterList} />
       
-      <div className="d-flex justify-content-between align-items-center mt-5 pt-3">
-        <h2>Stays in Findland</h2>
-        <div className="fs-5"> {numStays}+stays</div>
-      </div>
+      <CardNode array={filterList}/>
       
-      <Stack className="d-flex flex-wrap justify-content-center" direction="horizontal" gap={5}>
-        {data.map((el,index) => {
-          return (
-          <CardNode props={el} key={index}/>
-          )
-        })}
-      </Stack>
+      
     </Container>
   );
 }

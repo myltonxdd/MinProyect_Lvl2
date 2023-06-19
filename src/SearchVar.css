@@ -1,0 +1,9 @@
+.plom::placeholder{
+    color: #BDBDBD;
+    font-size: 16px;
+}
+
+.plomBox{
+    height: 7vh;
+    font-family: 'Mulish', sans-serif;
+}
