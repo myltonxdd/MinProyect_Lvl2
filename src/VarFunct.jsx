@@ -91,7 +91,7 @@ function VarFunct(props) {
                 </div>
                 <div className="forma form-control">
                     <p className='mb-2' style={{fontSize:"12px"}}>GUESTS</p>
-                    <input className='w-100' Value={adults + children} type="text" style={{outline:"none"}} onClick={cambia2} placeholder="Add Guest" />
+                    <input className='w-100' defaultValue={adults + children} type="text" style={{outline:"none"}} onClick={cambia2} placeholder="Add Guest" />
                 </div>
                 <Button onClick={props.filerClose} type="button" className='btn btn-danger rounded-4 w-25' style={{border:"none", margin:"red"}}>{lupa} Search</Button>
 

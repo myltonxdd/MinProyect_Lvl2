@@ -44,7 +44,7 @@ function App() {
   return (
     <Container className="mt-4">
       <SearchVar country={data.country} array1={filterList} />
-      
+      <h1>Hola</h1>
       <CardNode array={filterList}/>
       
       
